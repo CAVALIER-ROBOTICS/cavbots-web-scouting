@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, send_file
 
 app = Flask(__name__)
 
-secretCode = "Schoolmaster7492"
+secretCode = "SchoolmasterForEinsteins2025"
 
 @app.route("/")
 def returnIndexPage():

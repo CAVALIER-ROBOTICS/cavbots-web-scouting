@@ -246,5 +246,3 @@ setupBoxCheck(deadRobot);
 submitButton.onclick = showConfirmationModal;
 sendDataToServerButton.onclick = onSubmitButtonPress;
 closeConfirmationModal.onclick = hideConfirmationModal;
-
-getScoutingData();
