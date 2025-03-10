@@ -1,8 +1,11 @@
-const submitButton = document.getElementById("submitButton");
+const submitButton = document.getElementById("openModal");
+const sendDataToServerButton = document.getElementById("submitData");
+const closeConfirmationModal = document.getElementById("closeButton");
 
 const initials = document.getElementById("initials");
 const teamNumber = document.getElementById("teamNumber");
 const matchNumber = document.getElementById("matchNumber");
+const secretCode = document.getElementById("secretCode");
 
 const autoL1 = document.getElementById("autoL1");
 const autoL2 = document.getElementById("autoL2");
@@ -55,9 +58,18 @@ const deadRobot = document.getElementById("deadRobot");
 
 const allBoolFields = document.getElementsByClassName("switchInput");
 
+const confirmationModal = document.getElementById("confirmationModalLol");
+
+const errorTextDisplay = document.getElementById("errtext");
+
+const clearableInputs = document.getElementsByClassName("clearableInput");
+
+const dataSendSuccessfulText = document.getElementById("dataSendSuccessfulText");
+
 const url = "http://127.0.0.1:5000/send";
 const getUrl = "http://127.0.0.1:5000/getData";
 
+let debounce = false;
 
 function getBoxData() {
     return initials.value;
@@ -68,6 +80,15 @@ function sendData(json) {
     req.open("POST", url);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(json);
+
+    req.onload = () => {
+        debounce = false;
+        if(req.response == "success") {
+            onSuccessfulDataSubmission();
+        } else {
+            throwVisibleError("Server indicated data is invalid. Check scouting code.")
+        }
+    }
 }
 
 function getScoutingData() {
@@ -111,7 +132,9 @@ function getJSON() {
         didDeepClimb: deepClimb.checked,
         didShallowClimb: shallowClimb.checked,
         didPark: park.checked,
-        didRobotDie: deadRobot.checked
+        didRobotDie: deadRobot.checked,
+
+        secretScoutingCode: secretCode.value
     })
 }
 
@@ -119,13 +142,47 @@ function checkDataValidity() {
     return initials.value != "" && teamNumber.value != "" && matchNumber.value != "";
 }
 
+function showConfirmationModal() {
+    hideErrorText()
+    confirmationModal.style.display = "block";
+}
+
+function hideConfirmationModal() {
+    confirmationModal.style.display = "none";
+}
+
+function throwVisibleError(errtext) {
+    errorTextDisplay.innerHTML = errtext;
+    errorTextDisplay.style.display = "block";
+}
+
+function hideErrorText() {
+    errorTextDisplay.style.display = "none";
+}
+
+function indicateSuccess() {
+    dataSendSuccessfulText.style.display = "block";
+    setTimeout(() => dataSendSuccessfulText.style.display = "none", 5000);
+}
+
+function onSuccessfulDataSubmission() {
+    hideConfirmationModal()
+    clearNonEssentialElements()
+    indicateSuccess();
+}
+
 function onSubmitButtonPress() {
+    if(debounce) {
+        return;
+    }
+
     if(checkDataValidity()) {
         console.log("Sending data!")
         sendData(getJSON());
+        debounce = true;
         return;
     }
-    console.log("Data invalid. Double check input fields and try again.")
+    throwVisibleError("Data invalid. Double check input fields and try again.")
 }
 
 function offset(uiElement, offset) {
@@ -152,6 +209,19 @@ function setupBoxCheck(checkBox) {
     });
 }
 
+function clearNonEssentialElements() {
+    for(let i = 0; i < clearableInputs.length; i++) {
+        clearableInputs[i].value = 0;
+    }
+
+    for(let i = 0; i < allBoolFields.length; i++) {
+        allBoolFields[i].checked = false;
+    }
+
+    matchNumber.value = "";
+    teamNumber.value = "";
+}
+
 setupPlusMinusNumEntry(autoL1, autoL1Plus, autoL1Minus);
 setupPlusMinusNumEntry(autoL2, autoL2Plus, autoL2Minus);
 setupPlusMinusNumEntry(autoL3, autoL3Plus, autoL3Minus);
@@ -173,5 +243,8 @@ setupBoxCheck(shallowClimb);
 setupBoxCheck(park);
 setupBoxCheck(deadRobot);
 
-submitButton.onclick = onSubmitButtonPress;
+submitButton.onclick = showConfirmationModal;
+sendDataToServerButton.onclick = onSubmitButtonPress;
+closeConfirmationModal.onclick = hideConfirmationModal;
+
 getScoutingData();

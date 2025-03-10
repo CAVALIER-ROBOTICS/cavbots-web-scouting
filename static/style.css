@@ -67,4 +67,29 @@ p {
     display: none;
     z-index: 1;
     position: fixed;
+    background-color: var(--darkBlue);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    button {
+        width: 25%;
+        height: 10%;
+    }
+
+    .errtext {
+        display: none;
+        color: red;
+    }
+}
+
+.dataSendSuccessIndicator {
+    display: none;
+    color: lightgreen;
+    font-size: larger;
 }

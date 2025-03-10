@@ -1,2 +1,9 @@
 scouterInitials, teamNumber, matchNumber, autoL1, autoL2, autoL3, autoL4, autoBarge, autoProcessor, teleL1, teleL2, teleL3, teleL4, teleBarge, teleProcessor, didDeepClimb, didShallowClimb, didPark, didRobotDie
-
+asdf,asdf,sadf,0,0,0,0,0,0,0,0,0,0,0,1,False,True,False,False
+sdf,sadf,sadf,0,0,0,0,0,0,0,0,0,0,0,0,False,False,True,False
+asdf,sadf,sadf,1,0,0,0,0,0,0,1,0,0,0,0,True,False,False,False
+test2,sdafasdfsdaf,asdfasdfasdf,0,2,0,0,0,0,0,0,0,0,0,0,False,False,True,False
+asdf,sadf,sadf,1,1,0,0,0,0,0,0,0,0,0,0,False,False,True,False,Schoolmaster7492
+asdf,asdf,asdf,1,0,0,0,0,0,0,0,1,0,0,0,False,True,False,False,Schoolmaster7492
+asdf,asd,asd,0,0,0,0,0,0,0,0,0,0,0,0,True,False,False,False
+AB,7492,1,0,0,0,17,2,2,6,0,0,25,8,0,True,False,False,False

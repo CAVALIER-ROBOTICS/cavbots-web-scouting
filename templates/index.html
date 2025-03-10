@@ -24,43 +24,47 @@
                 <p>Match Number</p>
                 <input type="text" id="matchNumber" placeholder="0">
             </div>
+            <div class="textentryRaw">
+                <p>Scouting Code</p>
+                <input type="text" id="secretCode" placeholder="????">
+            </div>
         </div>
         <div class="megasegment" id="autonomous">
             <h1>Autonomous</h1>
             <div class="textentry">
                 <p>L1</p>
                 <button id="autoL1ButtonMinus">-</button>
-                <input type="text" id="autoL1" value="0">
+                <input type="text" id="autoL1" class="clearableInput" value="0">
                 <button id="autoL1ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>L2</p>
                 <button id="autoL2ButtonMinus">-</button>
-                <input type="text" id="autoL2" value="0">
+                <input type="text" id="autoL2" class="clearableInput" value="0">
                 <button id="autoL2ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>L3</p>
                 <button id="autoL3ButtonMinus">-</button>
-                <input type="text" id="autoL3" value="0">
+                <input type="text" id="autoL3" class="clearableInput" value="0">
                 <button id="autoL3ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>L4</p>
                 <button id="autoL4ButtonMinus">-</button>
-                <input type="text" id="autoL4" value="0">
+                <input type="text" id="autoL4" class="clearableInput" value="0">
                 <button id="autoL4ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>Processor Algae</p>
                 <button id="autoProcessorMinus">-</button>
-                <input type="text" id="autoProcessor" value="0">
+                <input type="text" id="autoProcessor" class="clearableInput" value="0">
                 <button id="autoProcessorPlus">+</button>
             </div>
             <div class="textentry">
                 <p>Barge Algae</p>
                 <button id="autoBargeMinus">-</button>
-                <input type="text" id="autoBarge" value="0">
+                <input type="text" id="autoBarge" class="clearableInput" value="0">
                 <button id="autoBargePlus">+</button>
             </div>
         </div>
@@ -69,37 +73,37 @@
             <div class="textentry">
                 <p>L1</p>
                 <button id="teleL1ButtonMinus">-</button>
-                <input type="text" id="teleL1" value="0">
+                <input type="text" id="teleL1" class="clearableInput" value="0">
                 <button id="teleL1ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>L2</p>
                 <button id="teleL2ButtonMinus">-</button>
-                <input type="text" id="teleL2" value="0">
+                <input type="text" id="teleL2" class="clearableInput" value="0">
                 <button id="teleL2ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>L3</p>
                 <button id="teleL3ButtonMinus">-</button>
-                <input type="text" id="teleL3" value="0">
+                <input type="text" id="teleL3" class="clearableInput" value="0">
                 <button id="teleL3ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>L4</p>
                 <button id="teleL4ButtonMinus">-</button>
-                <input type="text" id="teleL4" value="0">
+                <input type="text" id="teleL4" class="clearableInput" value="0">
                 <button id="teleL4ButtonPlus">+</button>
             </div>
             <div class="textentry">
                 <p>Processor Algae</p>
                 <button id="teleProcessorMinus">-</button>
-                <input type="text" id="teleProcessor" value="0">
+                <input type="text" id="teleProcessor" class="clearableInput" value="0">
                 <button id="teleProcessorPlus">+</button>
             </div>
             <div class="textentry">
                 <p>Barge Algae</p>
                 <button id="teleBargeMinus">-</button>
-                <input type="text" id="teleBarge" value="0">
+                <input type="text" id="teleBarge" class="clearableInput" value="0">
                 <button id="teleBargePlus">+</button>
             </div>
         </div>
@@ -134,16 +138,17 @@
                 </label>
             </div>
         </div>
-        <button type="button" id="submitButton" class="submitButton">Submit</button>
+        <p class="dataSendSuccessIndicator" id="dataSendSuccessfulText">Sent data!</p>
+        <button type="button" id="openModal" class="submitButton">Submit</button>
         <a href="http://127.0.0.1:5000/getData">Download data</a>
 
-        <div class="confirmationModal">
+        <div class="confirmationModal" id="confirmationModalLol">
             <h1>Submit data to database?</h1>
             <p>Data cannot be changed once submitted.</p>
             <button id="submitData">Yes</button>
             <button id="closeButton">No</button>
+            <p class="errtext" id="errtext">This text box is for displaying errors.</p>
         </div>
-
         <script src="static\main.js"></script>
     </body>
 </html>

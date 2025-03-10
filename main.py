@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, send_file
 
 app = Flask(__name__)
 
-scoutingData = []
+secretCode = "Schoolmaster7492"
 
 @app.route("/")
 def returnIndexPage():
@@ -11,6 +11,8 @@ def returnIndexPage():
 def rawDataToCSVString(jsonData):
     ret = ""
     for key in jsonData:
+        if(key == "secretScoutingCode"):
+            continue
         ret += f"%s,"%(jsonData[key])
     ret = ret[0:len(ret) - 1]
     ret += "\n"
@@ -43,14 +45,14 @@ def isDataValid(jsonData):
     values = list(jsonData.values())
     header = values[:3]
     scoring = values[3:15]
-    endgame = values[15:len(values)]
+    endgame = values[15:len(values) - 1]
 
     return isStringArrayValid(header) and isNumberArrayValid(scoring) and isBoolArrayValid(endgame)
     
 
 @app.route("/send", methods=["post"])
 def onPost():
-    if(isDataValid(request.json)):
+    if(isDataValid(request.json) and request.json["secretScoutingCode"] == secretCode):
         print("Data is valid. Adding")
         addStringToDatabase(rawDataToCSVString(request.json))
         return "success", 200
