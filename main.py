@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, send_file
-import json
 
 app = Flask(__name__)
 
@@ -45,7 +44,7 @@ def isDataValid(jsonData):
     header = values[:3]
     scoring = values[3:15]
     endgame = values[15:len(values)]
-    
+
     return isStringArrayValid(header) and isNumberArrayValid(scoring) and isBoolArrayValid(endgame)
     
 
